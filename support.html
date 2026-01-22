@@ -143,7 +143,7 @@
         setTimeout(() => {
             enterBtn.style.display = "inline-block";
             exitBtn.style.display = "inline-block";
-        }, 10000);
+        }, 2000);
     }
 
     /* 入室 */
@@ -155,7 +155,7 @@
 
     /* 退出 */
     exitBtn.onclick = () => {
-        message.textContent = "さようなら！";
+        message.textContent = "ご利用、ありがとうございました！さようなら！";
         hideButtons();
         setTimeout(() => message.textContent = "", 10000);
     };
