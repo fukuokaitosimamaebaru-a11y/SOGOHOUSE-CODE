@@ -8,65 +8,60 @@
     body {
         font-family: sans-serif;
         text-align: center;
-        padding-top: 50px;
+        padding-top: 40px;
     }
 
-    /* ボタンのデザイン（横長長方形） */
-    .btn {
-        display: inline-block;
-        width: 200px;
-        padding: 15px 0;
-        margin: 10px;
-        font-size: 18px;
-        border: none;
-        border-radius: 8px;
+    .big-btn {
+        width: 400px;
+        height: 250px;
+        background-color: #f0f8ff;
+        border: 4px solid #808080;
+        margin: 20px;
+        border-radius: 10px;
+        font-size: 40px;
+        color: black;
         cursor: pointer;
+        transition: 0.1s;
     }
 
-    #enterBtn {
-        background-color: #4CAF50;
+    /* 押した時の色 */
+    #enterBtn:active {
+        background-color: #008000; /* 緑 */
         color: white;
     }
 
-    #exitBtn {
-        background-color: #f44336;
+    #exitBtn:active {
+        background-color: #ff0000; /* 赤 */
         color: white;
     }
 
-    /* メッセージ表示エリア */
     #message {
         margin-top: 30px;
-        font-size: 24px;
+        font-size: 32px;
+        min-height: 40px;
         font-weight: bold;
-        min-height: 30px;
     }
 </style>
 
 </head>
 <body>
 
-    <button id="enterBtn" class="btn">入室</button>
-    <button id="exitBtn" class="btn">退出</button>
+    <button id="enterBtn" class="big-btn">入室</button>
+    <button id="exitBtn" class="big-btn">退出</button>
 
     <div id="message"></div>
 
 <script>
     const message = document.getElementById("message");
 
-    // 入室ボタン
-    document.getElementById("enterBtn").onclick = function() {
+    document.getElementById("enterBtn").onclick = () => {
         message.textContent = "こんにちは！";
-        setTimeout(() => {
-            message.textContent = "";
-        }, 10000); // 10秒後に消える
+        setTimeout(() => message.textContent = "", 10000);
     };
 
-    // 退出ボタン
-    document.getElementById("exitBtn").onclick = function() {
+    document.getElementById("exitBtn").onclick = () => {
         message.textContent = "さようなら！";
-        setTimeout(() => {
-            message.textContent = "";
-        }, 10000); // 10秒後に消える
+        setTimeout(() => message.textContent = "", 10000);
     };
 </script>
 
