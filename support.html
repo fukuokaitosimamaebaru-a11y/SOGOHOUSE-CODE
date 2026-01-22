@@ -26,12 +26,12 @@
 
     /* 押した時の色 */
     #enterBtn:active {
-        background-color: #008000; /* 緑 */
+        background-color: #008000;
         color: white;
     }
 
     #exitBtn:active {
-        background-color: #ff0000; /* 赤 */
+       	background-color: #ff0000;
         color: white;
     }
 
@@ -53,14 +53,32 @@
 
 <script>
     const message = document.getElementById("message");
+    const enterBtn = document.getElementById("enterBtn");
+    const exitBtn = document.getElementById("exitBtn");
 
-    document.getElementById("enterBtn").onclick = () => {
+    // ボタンを消して戻す処理
+    function hideButtons() {
+        enterBtn.style.display = "none";
+        exitBtn.style.display = "none";
+
+        // 10秒後に戻す
+        setTimeout(() => {
+            enterBtn.style.display = "inline-block";
+            exitBtn.style.display = "inline-block";
+        }, 10000);
+    }
+
+    // 入室
+    enterBtn.onclick = () => {
         message.textContent = "こんにちは！";
+        hideButtons();
         setTimeout(() => message.textContent = "", 10000);
     };
 
-    document.getElementById("exitBtn").onclick = () => {
+    // 退出
+    exitBtn.onclick = () => {
         message.textContent = "さようなら！";
+        hideButtons();
         setTimeout(() => message.textContent = "", 10000);
     };
 </script>
