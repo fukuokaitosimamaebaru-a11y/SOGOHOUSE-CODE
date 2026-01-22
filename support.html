@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>入室・退出デモ</title>
+
+<style>
+    body {
+        font-family: sans-serif;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    /* ボタンのデザイン（横長長方形） */
+    .btn {
+        display: inline-block;
+        width: 200px;
+        padding: 15px 0;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    #enterBtn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #exitBtn {
+        background-color: #f44336;
+        color: white;
+    }
+
+    /* メッセージ表示エリア */
+    #message {
+        margin-top: 30px;
+        font-size: 24px;
+        font-weight: bold;
+        min-height: 30px;
+    }
+</style>
+
+</head>
+<body>
+
+    <button id="enterBtn" class="btn">入室</button>
+    <button id="exitBtn" class="btn">退出</button>
+
+    <div id="message"></div>
+
+<script>
+    const message = document.getElementById("message");
+
+    // 入室ボタン
+    document.getElementById("enterBtn").onclick = function() {
+        message.textContent = "こんにちは！";
+        setTimeout(() => {
+            message.textContent = "";
+        }, 10000); // 10秒後に消える
+    };
+
+    // 退出ボタン
+    document.getElementById("exitBtn").onclick = function() {
+        message.textContent = "さようなら！";
+        setTimeout(() => {
+            message.textContent = "";
+        }, 10000); // 10秒後に消える
+    };
+</script>
+
+</body>
+</html>
