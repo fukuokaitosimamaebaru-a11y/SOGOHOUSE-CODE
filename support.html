@@ -26,7 +26,14 @@
         z-index: 10;
     }
 
-    /* ボタン */
+    /* ロゴ */
+    #logo, #logoSmall {
+        width: 230px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    /* 大きなボタン（入室・退出） */
     .big-btn {
         width: 400px;
         height: 250px;
@@ -40,7 +47,7 @@
         transition: 0.1s;
     }
 
-    /* 押した時 */
+    /* 押したときの色 */
     #enterBtn:active { background-color:#008000; color:white; }
     #exitBtn:active  { background-color:#ff0000; color:white; }
 
@@ -51,11 +58,11 @@
         font-weight: bold;
     }
 
-    /* ▼ スライドパネル（詳細画面） ▼ */
-    #detailPanel {
+    /* 共通スライドページ */
+    .slidePanel {
         position: fixed;
         top: 0;
-        left: -100%;   /* 最初は左の外 */
+        left: -100%;
         width: 100%;
         height: 100%;
         background: #ffffff;
@@ -66,33 +73,24 @@
         z-index: 20;
     }
 
-    #detailPanel h2 {
-        font-size: 40px;
-        margin-bottom: 30px;
-    }
-
-    #detailPanel p {
-        font-size: 28px;
-        margin: 10px 0;
-    }
-
-    /* ▼ 下の「スライドで詳細」ボタン ▼ */
-    #slideDetail {
+    /* 下固定ボタン */
+    .footerBtn {
         position: fixed;
-        bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 28px;
+        font-size: 24px;
         padding: 10px 20px;
-        background: #e0e0ff;
         border: 2px solid #666;
         border-radius: 8px;
         cursor: pointer;
         z-index: 15;
     }
 
-    /* ▼ 戻るボタン ▼ */
-    #slideBack {
+    #slideDetail  { bottom: 70px; background: #e0e0ff; } /* 詳細ボタン */
+    #slideCompany { bottom: 20px; background: #b0d4ff; } /* 企業紹介ボタン */
+
+    /* スライドページ戻るボタン */
+    .slideBack {
         margin-top: 50px;
         font-size: 28px;
         padding: 10px 20px;
@@ -102,13 +100,39 @@
         cursor: pointer;
     }
 
+    /* 下に固定の青い「ページへ戻る」ボタン */
+    .back-btn {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        background: #1E90FF;
+        padding: 6px 14px;
+        border-radius: 10px;
+        font-size: 12px;
+        color: #ffffff;
+        border: 1px solid #1E90FF;
+        user-select: none;
+        cursor: pointer;
+        opacity: 0.9;
+        z-index: 30;
+    }
+
+    .back-btn:hover { opacity: 1; }
+
 </style>
 
 </head>
 <body>
 
-<!-- バージョン表示 -->
+<!-- ページへ戻る（全画面共通） -->
+<div class="back-btn" onclick="history.back()">ページへ戻る</div>
+
+<!-- バージョン -->
 <div id="version">v1.0.7</div>
+
+<!-- ロゴ -->
+<img id="logo"
+src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAABmCAYAAAC42Zd0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABgElEQVR4nO3aMQ7CMAwFUDT/P+3TzQ3xEXUXJJLLfi5M5sdiKHIu05KqDgAAAAAAAAAAAOAbn1uHY7A+a/wH2qp8IEMWsQvMoWu3hcfnmRRz4iR/1LjP0tXA3nlA3FP9kRrOHhy3uvGZ1Fq9ru5iK9xCjF4nSJN8WfJ+HT4vj34W23AcfG3F4t8KuHy2c+wbmz1fC49aF4xZ3iYj3GfBeO3G4ax8dJD0WO1pTnK6t2Q93faWOc3tMKzxKxzy7TlCEs/grHkUs+Ws8QtJCrLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLEnLfGd9W9x742Pc/1zhVZp7pNs">
 
 <!-- メイン画面 -->
 <button id="enterBtn" class="big-btn">入室</button>
@@ -116,26 +140,44 @@
 
 <div id="message"></div>
 
-<!-- スライドで詳細へ -->
-<div id="slideDetail">詳細</div>
+<!-- 詳細へ -->
+<div id="slideDetail" class="footerBtn">詳細</div>
 
-<!-- ▼ 詳細画面 ▼ -->
-<div id="detailPanel">
+<!-- 企業紹介へ -->
+<div id="slideCompany" class="footerBtn">企業紹介</div>
 
+
+<!-- ▼ 詳細ページ ▼ -->
+<div id="detailPanel" class="slidePanel">
     <h2>詳細</h2>
-
     <p>バージョン：<strong>v1.0.7</strong></p>
-    <p>制作企業：<strong>仮想会社 SOGOHOUSE プログラム部</strong></p>
-
-    <div id="slideBack">← 戻る</div>
+    <p>制作企業：<strong>SOGOHOUSE Co., Ltd.</strong></p>
+    <div id="slideBackDetail" class="slideBack">← 戻る</div>
 </div>
+
+
+<!-- ▼ 企業紹介ページ ▼ -->
+<div id="companyPanel" class="slidePanel">
+
+    <!-- 小さめロゴ -->
+    <img id="logoSmall"
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAABmCAYAAAC42Zd0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABgElEQVR4nO3aMQ7CMAwFUDT/P+3TzQ3xEXUXJJLLfi5M5sdiKHIu05KqDgAAAAAAAAAAAOAbn1uHY7A+a/wH2qp8IEMWsQvMoWu3hcfnmRRz4iR/1LjP0tXA3nlA3FP9kRrOHhy3uvGZ1Fq9ru5iK9xCjF4nSJN8WfJ+HT4vj34W23AcfG3F4t8KuHy2c+wbmz1fC49aF4xZ3iYj3GfBeO3G4ax8dJD0WO1pTnK6t2Q93faWOc3tMKzxKxzy7TlCEs/grHkUs+Ws8QtJCrLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLErLEnLfGd9W9x742Pc/1zhVZp7pNs">
+
+    <h2>友達専用の遊び場です。</h2>
+
+    <p style="font-size:28px;">そして現在の会員数は</p>
+    <p style="font-size:40px; font-weight:bold;">なんと：2人です😭</p>
+
+    <div id="slideBackCompany" class="slideBack">← 戻る</div>
+</div>
+
 
 <script>
     const message = document.getElementById("message");
     const enterBtn = document.getElementById("enterBtn");
     const exitBtn = document.getElementById("exitBtn");
 
-    /* ▼ ボタン消える処理 ▼ */
+    /* ボタンを10秒消す */
     function hideButtons() {
         enterBtn.style.display = "none";
         exitBtn.style.display = "none";
@@ -143,7 +185,7 @@
         setTimeout(() => {
             enterBtn.style.display = "inline-block";
             exitBtn.style.display = "inline-block";
-        }, 2000);
+        }, 10000);
     }
 
     /* 入室 */
@@ -160,18 +202,13 @@
         setTimeout(() => message.textContent = "", 10000);
     };
 
-    /* ▼ 詳細スライド処理 ▼ */
-    const detailPanel = document.getElementById("detailPanel");
-    const slideDetail = document.getElementById("slideDetail");
-    const slideBack   = document.getElementById("slideBack");
+    /* 詳細スライド */
+    slideDetail.onclick = () => detailPanel.style.left = "0";
+    slideBackDetail.onclick = () => detailPanel.style.left = "-100%";
 
-    slideDetail.onclick = () => {
-        detailPanel.style.left = "0";  // 左→右へスライドイン
-    };
-
-    slideBack.onclick = () => {
-        detailPanel.style.left = "-100%"; // 右→左へスライドアウト
-    };
+    /* 企業紹介スライド */
+    slideCompany.onclick = () => companyPanel.style.left = "0";
+    slideBackCompany.onclick = () => companyPanel.style.left = "-100%";
 </script>
 
 </body>
